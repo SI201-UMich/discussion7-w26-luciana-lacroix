@@ -6,6 +6,22 @@ import csv
 ##### TASK 1: CSV READER
 ###############################################################################
 def load_listings(f):
+    listings = []
+
+    with open(f, newline='', encoding='utf-8') as file:
+        reader = csv.reader(file)
+
+        header = next(reader)
+
+        for row in reader:
+            row_dict = {}
+
+            for i in range(len(header)):
+                row_dict[header[i]] = row[i]
+
+            listings.append(row_dict)
+            
+    return listings
     """
     Read the Airbnb listings CSV and return a list of records.
 
