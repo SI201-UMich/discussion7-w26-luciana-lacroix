@@ -62,6 +62,21 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
         key = (group, room)
 
         price = float(listing['price'])
+
+        if key not in totals:
+            totals[key] = 0
+            counts[key] = 0
+
+        totals[key] = totals[key] + price
+        counts[key] = counts[key] + 1
+
+    
+    averages = {}
+
+    for key in totals:
+        averages[key] = totals[key] / counts[key]
+
+    return averages
     """
     Calculate the average nightly price for each (neighbourhood_group, room_type) pair.
 
