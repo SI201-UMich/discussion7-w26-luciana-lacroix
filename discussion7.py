@@ -20,7 +20,7 @@ def load_listings(f):
                 row_dict[header[i]] = row[i]
 
             listings.append(row_dict)
-            
+
     return listings
     """
     Read the Airbnb listings CSV and return a list of records.
@@ -47,12 +47,21 @@ def load_listings(f):
     full_path = os.path.join(base_path, f)
 
     # TODO: Read the CSV using csv.reader and convert it to a list a dictionaries
-    pass
+    
 
 ###############################################################################
 ##### TASK 2: CALCULATION FUNCTION (single calculation)
 ###############################################################################
 def calculate_avg_price_by_neighbourhood_group_and_room(listings):
+    totals = {}
+    counts = {}
+
+    for listing in listings:
+        group = listing['neighbourhood_group']
+        room = listing['room_type']
+        key = (group, room)
+
+        price = float(listing['price'])
     """
     Calculate the average nightly price for each (neighbourhood_group, room_type) pair.
 
